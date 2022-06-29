@@ -1,0 +1,4 @@
+﻿  TicTacToe.cpp
+C:\Users\anian\source\kursSDA\ZadanieKolkoKrzyzyk\ZadanieKolkoKrzyzyk\TicTacToe.cpp(58,37): error C2059: syntax error: ';'
+C:\Users\anian\source\kursSDA\ZadanieKolkoKrzyzyk\ZadanieKolkoKrzyzyk\TicTacToe.cpp(85,11): error C2065: 'board': undeclared identifier
+C:\Users\anian\source\kursSDA\ZadanieKolkoKrzyzyk\ZadanieKolkoKrzyzyk\TicTacToe.cpp(87,2): error C2065: 'board': undeclared identifier
