@@ -54,12 +54,12 @@ bool Board::checkCols()
 bool Board::checkDiagonal()
 {
   
-    return (table[0][0] != CheckerState::EMPTY &&
-        (table[0][0] == table[1][1] &&
+    return ((table[0][0] != CheckerState::EMPTY &&
+        table[0][0] == table[1][1] &&
             table[1][1] == table[2][2]) ||
-        (table[2][0] != CheckerState::EMPTY) &&
-        (table[2][0] == table[1][1]) &&
-        (table[1][1] == table[0][2]);
+        (table[2][0] != CheckerState::EMPTY &&
+        table[2][0] == table[1][1] &&
+        table[1][1] == table[0][2]));
       
      
   }
@@ -79,7 +79,7 @@ bool Board::xWon()
 //    std::cout << "   |   |   ";
 //}
 
-bool Player::makeTurn(Board)
+bool Player::makeTurn(Board* board)
 {
     	std::cout << "You're player: " << colour << std::endl;
 	int x = 0, y = 0;
@@ -87,7 +87,7 @@ bool Player::makeTurn(Board)
 	{
 		std::cout << "Give x and y: ";
 		std::cin >> x, y;
-	} while (board ->CheckerState.check(x, y) != CheckerState::EMPTY);
+	} while (board ->check(x, y) != CheckerState::EMPTY);
 
 	board->set(colour, x, y);
 	
@@ -116,7 +116,7 @@ void Game::start()
     do
     {
         this->swapPlayer();
-        currentPlayer->makeTurn(board);
+        currentPlayer->makeTurn(&board);
         std::cout << board;
 
     }
@@ -157,5 +157,5 @@ void Game::swapPlayer()
 
 Player::Player(CheckerState cs)
 {
-
+    this->colour = cs;
 }

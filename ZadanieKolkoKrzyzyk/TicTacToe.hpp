@@ -31,7 +31,7 @@ class Player
 
 public:
 	Player(CheckerState cs);
-	bool makeTurn(Board);
+	bool makeTurn(Board* board);
 
 };
 
