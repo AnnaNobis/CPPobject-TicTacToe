@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 
+
 class Board;
 
 enum class CheckerState { EMPTY, O, X};
@@ -52,32 +53,8 @@ class Game
 
 };
 
-std::ostream& operator << (std::ostream& s, const Board& board)
-{
-	for (int i = 0; i < 3; ++i)
-	{
-		for (int j = 0; j < 3; ++j)
-		{
-			CheckerState cs = board.check(i, j);
-			s << " ";
-		/*	 s << board.check(i, j); // nie pozwala mi na taki zapis: s << board.check(i, j) DLACZEGO?
-			s << " ";*/
-		}
-		s<< std::endl;
-	}
-	return s;
+std::ostream& operator << (std::ostream& s, const Board& );
 
-}
 
-std::ostream& operator << (std::ostream& s, const CheckerState& cs)
-	//std::count zaminiamy na s
-{if (cs == CheckerState::EMPTY)
-s << "-";
-else if (cs == CheckerState::X)
-s << "X";
-else if (cs == CheckerState::O)
-s << "O";
-return s;
-}
-
+std::ostream& operator << (std::ostream& s, const CheckerState& cs);
 

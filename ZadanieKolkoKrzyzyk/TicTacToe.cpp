@@ -5,6 +5,7 @@
 
 Board::Board()
 {
+   
 }
 
 CheckerState Board::check(int x, int y) const
@@ -82,16 +83,18 @@ bool Board::xWon()
 bool Player::makeTurn(Board* board)
 {
     	std::cout << "You're player: " << colour << std::endl;
-	int x = 0, y = 0;
+        int x = 0;
+        int y= 0;
 	do
 	{
-		std::cout << "Give x and y: ";
-		std::cin >> x, y;
-	} while (board ->check(x, y) != CheckerState::EMPTY);
+		std::cout << "Make your move: ";
+		std::cin >> x;
+        std::cin >> y;
+	} while (board->check(x, y) != CheckerState::EMPTY);
 
 	board->set(colour, x, y);
 	
-    return false;
+    return true;
 }
 
 Game::Game(Player* p1, Player* p2)
@@ -101,7 +104,7 @@ Game::Game(Player* p1, Player* p2)
    this-> player2 = p2;
     currentPlayer = player1;
 
-    reset();
+   // reset();
 
 }
 
@@ -158,4 +161,34 @@ void Game::swapPlayer()
 Player::Player(CheckerState cs)
 {
     this->colour = cs;
+}
+
+std::ostream& operator << (std::ostream& s, const Board& board)
+{
+    for (int i = 0; i < 3; ++i)
+    {
+        for (int j = 0; j < 3; ++j)
+        {
+           // CheckerState cs = board.check(i, j);
+            s << board.check(i, j);
+            s << " ";
+            /*	 s << board.check(i, j); // nie pozwala mi na taki zapis: s << board.check(i, j) DLACZEGO?
+                s << " ";*/
+        }
+        s << std::endl;
+    }
+    return s;
+
+}
+
+std::ostream& operator << (std::ostream& s, const CheckerState& cs)
+//std::count zaminiamy na s
+{
+    if (cs == CheckerState::EMPTY)
+        s << "-";
+    else if (cs == CheckerState::X)
+        s << "X";
+    else if (cs == CheckerState::O)
+        s << "O";
+    return s;
 }
